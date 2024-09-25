@@ -19,6 +19,6 @@ public class WebSocketDisconnectListener {
         String sessionId = headerAccessor.getSessionId();
 
     //    chatController.removeUser(sessionId);
-
+//
     }
 }
