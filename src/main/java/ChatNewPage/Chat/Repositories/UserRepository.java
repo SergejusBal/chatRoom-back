@@ -90,6 +90,30 @@ public class UserRepository {
 
     }
 
+    public int getUserID(String name){
+
+        String sql = "SELECT * FROM user WHERE name = ?";
+        int userId = 0;
+
+        try {
+            Connection connection = DriverManager.getConnection(url, username, password);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+
+            ResultSet resultSet =  preparedStatement.executeQuery();
+
+            if(resultSet.next()) return resultSet.getInt("id");
+
+        }catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+            return 0;
+        }
+
+        return 0;
+
+    }
+
 
 
 }
