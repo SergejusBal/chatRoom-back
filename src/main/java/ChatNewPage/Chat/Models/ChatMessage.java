@@ -1,14 +1,20 @@
 package ChatNewPage.Chat.Models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDateTime;
 
-public class Message {
+public class ChatMessage {
     private String name;
     private String message;
+
+    @JsonProperty("reservationDate")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime localDateTime;
     private MessageType type;
 
-    public Message() {
+    public ChatMessage() {
     }
 
     public String getName() {
@@ -22,6 +28,7 @@ public class Message {
     public LocalDateTime getLocalDateTime() {
         return localDateTime;
     }
+
     public MessageType getType() {
         return type;
     }
