@@ -10,6 +10,7 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
@@ -79,6 +80,13 @@ public class ChatController {
        return new ArrayList<>(namelist.values());
     }
 
+    @MessageMapping("/oldMessages")
+    @SendToUser("/topic/oldMessages")
+    public List<ChatMessage> getOldMessages() throws Exception {
+
+        return messageService.getLast100Messages();
+    }
+
     public void removeUser(String sessionId)  {
         String name = namelist.remove(sessionId);
 
@@ -91,6 +99,7 @@ public class ChatController {
             messagingTemplate.convertAndSend("/topic/chat", chatMessage);
         }
     }
+
 
     private String getRandomLogOffMessage(){
         Random random = new Random();
