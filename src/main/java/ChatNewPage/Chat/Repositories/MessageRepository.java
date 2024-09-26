@@ -61,7 +61,7 @@ public class MessageRepository {
 
         List<ChatMessage> chatMessages = new ArrayList<>();
 
-        String sql = "SELECT * FROM event_shop.comments ORDER BY id DESC LIMIT 100";
+        String sql = "SELECT * FROM messages ORDER BY id DESC LIMIT 100";
 
         try {
             Connection connection = DriverManager.getConnection(url, username, password);
