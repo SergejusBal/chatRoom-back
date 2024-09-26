@@ -8,10 +8,10 @@ import java.time.LocalDateTime;
 public class ChatMessage {
     private String name;
     private String message;
-
     @JsonProperty("reservationDate")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime localDateTime;
+    private String sesionID;
     private MessageType type;
 
     public ChatMessage() {
@@ -33,6 +33,10 @@ public class ChatMessage {
         return type;
     }
 
+    public String getSesionID() {
+        return sesionID;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -47,5 +51,9 @@ public class ChatMessage {
 
     public void setType(MessageType type) {
         this.type = type;
+    }
+
+    public void setSesionID(String sesionID) {
+        this.sesionID = sesionID;
     }
 }
