@@ -47,7 +47,7 @@ public class UserService {
         return true;
     }
 
-    private int userIDFromJWT(String authorizationHeader){
+    public int userIDFromJWT(String authorizationHeader){
         return Integer.parseInt((String) JwtDecoder.decodeJwt(authorizationHeader).get("UserId"));
     }
 
