@@ -13,10 +13,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.stereotype.Controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 public class ChatController {
@@ -77,7 +74,7 @@ public class ChatController {
 
        namelist.put(sessionId, name.getName());
 
-       return new ArrayList<>(namelist.values());
+       return new ArrayList<>(new HashSet<>(namelist.values()));
     }
 
     @MessageMapping("/oldMessages")
@@ -108,6 +105,10 @@ public class ChatController {
     private String getRandomLofInMessage(){
         Random random = new Random();
         return loginMessages[random.nextInt(0,9)];
+    }
+
+    public void sendPersonalMessage(String sessionID, String destination, ChatMessage message) {
+        messagingTemplate.convertAndSendToUser(sessionID, destination, message);
     }
 
 

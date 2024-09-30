@@ -28,7 +28,7 @@ public class WebSocketMessageInterceptor implements ChannelInterceptor {
         if(accessor == null) return message;
 
         if(accessor.getCommand() == StompCommand.CONNECT) return message;
-        if( accessor.getCommand() == StompCommand.DISCONNECT) return message;
+        if(accessor.getCommand() == StompCommand.DISCONNECT) return message;
 
         String JWT = accessor.getFirstNativeHeader("Authorization");
         if(userService.userAutoLogIn(JWT)) return message;
